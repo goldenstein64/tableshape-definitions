@@ -154,7 +154,10 @@ function BaseType:describe(description) end
 
 -- TODO: figure out what BaseType:tag is
 
----creates a new or cloned state and updates it with the `name` tag
+---creates a new or cloned state and updates it with the `name` tag, which
+---holds the transformation of its value from validation. If `name` is
+---postfixed with `[]`, the tag will hold an array of all the values it was
+---transformed through.
 ---@return tableshape.TaggedType
 function BaseType:tag(name) end
 
