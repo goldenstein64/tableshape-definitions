@@ -2,6 +2,9 @@
 	"Lua.workspace.library": [
 		"$USERPROFILE/AppData/Roaming/Code/User/globalStorage/sumneko.lua/addonManager/addons/luassert/module/library"
 	],
+	"[markdown]": {
+		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+	},
 	"editor.formatOnSave": true,
 	"Lua.workspace.checkThirdParty": false,
 	"cSpell.words": [
