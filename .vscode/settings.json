@@ -1,0 +1,7 @@
+{
+	"Lua.workspace.library": [
+		"$USERPROFILE/AppData/Roaming/Code/User/globalStorage/sumneko.lua/addonManager/addons/luassert/module/library"
+	],
+	"editor.formatOnSave": true,
+	"Lua.workspace.checkThirdParty": false
+}
