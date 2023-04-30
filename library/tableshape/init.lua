@@ -125,7 +125,8 @@ function BaseTypeClass:is_base_type(val) end
 function BaseType:check_value(val, state) end
 
 ---tests if `value` matches type, returns `value` on success. If `state` is
----used, then the `state` object is returned as a second value
+---used, then the `state` object is returned as a second value. Otherwise,
+---`nil` is returned.
 ---@param val any
 ---@param state tableshape.State?
 ---@return any | nil val
