@@ -134,9 +134,10 @@ function BaseType:transform(val, state) end
 
 BaseType.repair = BaseType.transform
 
--- TODO: figure out what BaseType:on_repair is supposed to do
-
----returns a function that does something complicated?
+---returns a type that tries to transform this value with `fn` if it mismatches
+---and attempts to match again
+---@param fn fun(value: any, state: tableshape.State): (value: any) | unknown
+---@return tableshape.DescribeNode
 function BaseType:on_repair(fn) end
 
 ---gives this type the ability to be `nil`
