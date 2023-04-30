@@ -30,6 +30,7 @@ The types provided by this library are, exhaustively:
 
 | Name                                 | Module Source           |
 | ------------------------------------ | ----------------------- |
+| `luassert` (extended)                | `tableshape.luassert`   |
 | `tableshape`                         | `tableshape.init`       |
 | `tableshape.FailedTransform`         | `tableshape.init`       |
 | `tableshape.CanCheckShape`           | `tableshape.init`       |
