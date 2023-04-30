@@ -1,6 +1,6 @@
 # tableshape Definitions
 
-Definitions files for [leafo/tableshape](https://github.com/leafo/tableshape) 2.6.0 to use with [LuaLS/lua-language-server](https://github.com/LuaLS/lua-language-server). The annotations have been manually re-written directly from the [source code](https://github.com/leafo/tableshape) to be parsable by the LSP.
+Definitions files for [leafo/tableshape](https://github.com/leafo/tableshape) 2.6.0 to use with [LuaLS/lua-language-server](https://github.com/LuaLS/lua-language-server). The annotations have been manually written directly from the [source code](https://github.com/leafo/tableshape) to be parsable by the LSP.
 
 ## Usage
 
