@@ -73,11 +73,11 @@ function tableshape.is_type(val) end
 ---Transform the value and state. No mutation must happen, return copies of
 ---values if they change. On failure return `FailedTransform, "error message"`.
 ---Ensure that even on error no mutations happen to `state` or `value`.
----@field _transform fun(self: tableshape.BaseType, val: any, state: tableshape.State): (any, tableshape.State)
+---@field protected _transform fun(self: tableshape.BaseType, val: any, state: tableshape.State): (any, tableshape.State)
 ---Return a string describing what the type should expect to get. This is used
 ---to generate error messages for complex types that bail out of value specific
 ---error messages due to complexity.
----@field _describe fun(self: tableshape.BaseType): string
+---@field protected _describe fun(self: tableshape.BaseType): string
 ---@overload fun(unknown): (boolean, err: string?)
 ---@operator div(function): tableshape.TransformNode
 ---@operator mod(function): tableshape.TransformNode
@@ -143,16 +143,14 @@ function BaseType:on_repair(fn) end
 ---@return tableshape.OptionalType
 function BaseType:is_optional() end
 
--- TODO: figure out what the table handler in `BaseType:describe` is
-
----@alias tableshape.DescribeTable table
+---@class tableshape.DescribeNode.Options
+---@field type string | fun(self: tableshape.DescribeNode): string | table | userdata -- can be a string or a callable
+---@field error? string | fun(val: any, state: tableshape.State): string | table | userdata -- can be a string or a callable
 
 ---give this type the following description if it fails
----@param description string | tableshape.DescribeTable
+---@param description string | fun(self: tableshape.DescribeNode): string | userdata | tableshape.DescribeNode.Options
 ---@return tableshape.DescribeNode
 function BaseType:describe(description) end
-
--- TODO: figure out what BaseType:tag is
 
 ---creates a new or cloned state and updates it with the `name` tag, which
 ---holds the transformation of its value from validation. If `name` is

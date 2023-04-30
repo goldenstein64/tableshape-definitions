@@ -36,6 +36,7 @@ The types provided by this library are, exhaustively:
 | `tableshape.CanCheckShape`           | `tableshape.init`       |
 | `tableshape.BaseType`                | `tableshape.init`       |
 | `tableshape.BaseType.Class`          | `tableshape.init`       |
+| `tableshape.DescribeNode.Options`    | `tableshape.init`       |
 | `tableshape.TransformNode`           | `tableshape.init`       |
 | `tableshape.SequenceNode`            | `tableshape.init`       |
 | `tableshape.FirstOfNode`             | `tableshape.init`       |
@@ -85,6 +86,5 @@ The types provided by this library are, exhaustively:
 | Name                                  | Module Source     |
 | ------------------------------------- | ----------------- |
 | `tableshape.State`                    | `tableshape.init` |
-| `tableshape.DescribeTable`            | `tableshape.init` |
 | `tableshape.AnnotateNode.FormatError` | `tableshape.init` |
 | `tableshape.CanCoerceLiteral`         | `tableshape.init` |
