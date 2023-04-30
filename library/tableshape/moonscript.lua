@@ -1,6 +1,7 @@
 ---@meta
 ---contains validation types specific to MoonScript
 
+---@class tableshape.moonscript
 local moonscript = {}
 
 ---matches a value that is a MoonScript class

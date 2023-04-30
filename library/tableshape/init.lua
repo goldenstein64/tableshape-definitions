@@ -1,9 +1,11 @@
 ---@meta
 ---the core validation feature set of this library
 
+---the core validation feature set of this library
 ---@class tableshape
 local tableshape = {
 	---represents a type that failed to transform its value
+	---@type tableshape.FailedTransform
 	FailedTransform = {},
 
 	VERSION = "", ---@type string
@@ -13,13 +15,13 @@ local tableshape = {
 ---@class tableshape.FailedTransform
 tableshape.FailedTransform = {}
 
----@class CanCheckShape
----@field check_value fun(self: CanCheckShape, val: any): boolean
+---@class tableshape.CanCheckShape
+---@field check_value fun(self: tableshape.CanCheckShape, val: any): boolean
 
 ---determines whether `val` matches `shape`. Equivalent to `shape(val)` for
 ---`tableshape` types.
 ---@param val any -- any value
----@param shape CanCheckShape -- typically a `tableshape` type, but can be any value with a `check_value` method
+---@param shape tableshape.CanCheckShape -- typically a `tableshape` type, but can be any value with a `check_value` method
 ---@return true | tableshape.State | nil success, string? err -- `true` if `value` matches `shape`, `false, error` otherwise
 function tableshape.check_shape(val, shape) end
 
@@ -28,7 +30,8 @@ function tableshape.check_shape(val, shape) end
 ---@return boolean
 function tableshape.is_type(val) end
 
----@class tableshape.State
+---represents any saved values or tags from the transformation process
+---@alias tableshape.State table
 
 ---This is the base class that all types must inherit from.
 ---Implementing types must provide the following methods:
@@ -104,7 +107,6 @@ local BaseType = {}
 ---* `*` - intersect this type with another type
 ---* `+` - union this type with another type
 ---* unary `-` - turn this type into its complement
----
 ---@class tableshape.BaseType.Class
 ---@overload fun(opts?: any): tableshape.BaseType
 local BaseTypeClass = {}
@@ -133,7 +135,8 @@ function BaseType:transform(val, state) end
 BaseType.repair = BaseType.transform
 
 -- TODO: figure out what BaseType:on_repair is supposed to do
----returns a function that does something complicated
+
+---returns a function that does something complicated?
 function BaseType:on_repair(fn) end
 
 ---gives this type the ability to be `nil`
@@ -300,9 +303,6 @@ local TagScopeType = {}
 ---@return any scope
 function TagScopeType:create_scope_state(state) end
 
----@class tableshape.OptionalTypeClass
----@overload fun(base_type: tableshape.BaseType): tableshape.OptionalType
-
 ---matches `nil` or its enclosing type
 ---@class tableshape.OptionalType : tableshape.BaseType
 ---@field base_type tableshape.BaseType
@@ -312,9 +312,6 @@ function TagScopeType:create_scope_state(state) end
 ---@operator mul(tableshape.CanCoerceLiteral): tableshape.SequenceNode
 ---@operator add(tableshape.CanCoerceLiteral): tableshape.FirstOfNode
 ---@operator unm: tableshape.NotType
-
----@class tableshape.AnyTypeClass
----@overload fun(): tableshape.AnyType
 
 ---matches anything
 ---@class tableshape.AnyType : tableshape.BaseType
@@ -328,8 +325,6 @@ function TagScopeType:create_scope_state(state) end
 ---@class tableshape.Type.Options
 ---@field length? number | tableshape.BaseType
 
----matches a value of type `type`. If given, it must also match the
----`length` field given in its options
 ---@class tableshape.Type : tableshape.BaseType
 ---@field length_type tableshape.BaseType
 ---@field t type
@@ -589,6 +584,7 @@ function Equivalent:values_equivalent(a, b) end
 ---| tableshape.BaseType
 
 ---a collection of validation types
+---@class tableshape.types
 local types = {}
 tableshape.types = types
 
@@ -596,35 +592,35 @@ tableshape.types = types
 types.any = {}
 
 ---matches a string
----@class tableshape.StringType : tableshape.Type
+---@type tableshape.Type
 types.string = {}
 
 ---matches a number
----@class tableshape.NumberType : tableshape.Type
+---@type tableshape.Type
 types.number = {}
 
 ---matches a function
----@class tableshape.FunctionType : tableshape.Type
+---@type tableshape.Type
 types.func = {}
 
 types["function"] = types.func
 
 ---matches the values `true` or `false`
----@class tableshape.BooleanType : tableshape.Type
+---@type tableshape.Type
 types.boolean = {}
 
 ---matches a userdata
----@class tableshape.UserdataType : tableshape.Type
+---@type tableshape.Type
 types.userdata = {}
 
 ---matches the value `nil`
----@class tableshape.NilType : tableshape.Type
+---@type tableshape.Type
 types.null = {}
 
 types["nil"] = types.null
 
 ---matches a table
----@class tableshape.TableType : tableshape.Type
+---@type tableshape.Type
 types.table = {}
 
 ---@type tableshape.ArrayType
