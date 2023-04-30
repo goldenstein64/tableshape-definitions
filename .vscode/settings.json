@@ -3,5 +3,12 @@
 		"$USERPROFILE/AppData/Roaming/Code/User/globalStorage/sumneko.lua/addonManager/addons/luassert/module/library"
 	],
 	"editor.formatOnSave": true,
-	"Lua.workspace.checkThirdParty": false
+	"Lua.workspace.checkThirdParty": false,
+	"cSpell.words": [
+		"leafo",
+		"luassert",
+		"Metatable",
+		"moonscript",
+		"tableshape"
+	]
 }
